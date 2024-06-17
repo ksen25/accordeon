@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Задание 3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <section id="navigation">
+        <img src="img/menu.png" alt="Навигация">
+    </section>
+    <section class="title">
+        <h1>Аккордеон</h1>
+    </section>
+    <div class="accordion accord-js">Таб 1</div>
+    <div class="panel panel-js"  style="display: none;">
+        <ul>
+            <li>Элемент 1</li>
+            <li>Элемент 2</li>
+            <li>Элемент 3</li>
+            <li>Элемент 4</li>
+            <li>Элемент 5</li>
+        </ul>
+    </div>
+    <div class="accordion accord-js">Таб 2</div>
+    <div class="panel panel-js"  style="display: none;">
+        <ul>
+            <li>Элемент 1</li>
+            <li>Элемент 2</li>
+            <li>Элемент 3</li>
+            <li>Элемент 4</li>
+        </ul>
+    </div>
+    <div class="accordion tab3 accord-js">Таб 3</div>
+    <div class="panel panel3 panel-js"  style="display: none;">
+        <ul>
+            <li>Элемент 1</li>
+            <li>Элемент 2</li>
+            <li>Элемент 3</li>
+            <li>Элемент 4</li>
+            <li>Элемент 5</li>
+        </ul>
+    </div>
+    <button class="continue" disabled>Продолжить</button>
+    <footer>
+        <img src="img/footer.png" alt="Подвал">
+    </footer>
+    <script>
+        let acc = document.querySelectorAll('.accord-js');
+        let panel = document.querySelectorAll('.panel-js');
+        let button = document.querySelector('.continue');
+        acc.forEach((item, idx) => {
+            item.addEventListener('click', () => {
+                panel.forEach(p => p.style.display = 'none');
+                acc.forEach(el => el.classList.remove('active'));
+                item.classList.add('active');
+                panel[idx].style.display = 'block';
+                item.classList.add('clicked');
+                checkAllDivsClicked();
+            });
+        });
+        function checkAllDivsClicked() {
+            let allClicked = Array.from(acc).every(el => el.classList.contains('clicked'));
+            if (allClicked) {
+                button.disabled = false;
+            } 
+        }
+    </script>
+</body>
+</html>
